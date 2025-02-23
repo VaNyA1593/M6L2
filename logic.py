@@ -5,7 +5,7 @@ import base64
 from PIL import Image
 from io import BytesIO
 import requests
-
+import os
 
 class Text2ImageAPI:
 
@@ -68,6 +68,7 @@ def create_image_from_bytes(image_bytes):
     return image
 
 def generate_image(prompt):
+    
     api = Text2ImageAPI('https://api-key.fusionbrain.ai/', '72F3C3188EF204142430F2CDBEAF5E40', 'ED23A2560B666F5339D461A8B794355A')
     model_id = api.get_model()
     uuid = api.generate(prompt, model_id)
@@ -84,5 +85,7 @@ def generate_image(prompt):
     # Display or save the image as needed
     img.save("output_image.jpg")
 
+def delete_img():
+    os.remove("output_image.jpg")
 
 #Don't forget to specify exactly YOUR_KEY and YOUR_SECRET.
