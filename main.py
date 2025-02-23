@@ -1,6 +1,6 @@
 import telebot
 from config import token
-from logic import generate_image
+from logic import generate_image, delete_image
 
 bot = telebot.TeleBot(token)
 
@@ -23,5 +23,6 @@ def image(message):
         bot.send_photo(message.chat.id, open('output_image.jpg', 'rb'))
         bot.send_message(message.chat.id, f"{prompt.capitalize()} generated successfully!")
         bot.delete_message(message.chat.id, generation_message.message_id)
+        delete_image()
         
 bot.infinity_polling()
